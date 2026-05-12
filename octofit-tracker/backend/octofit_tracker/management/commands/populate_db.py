@@ -4,7 +4,7 @@ from octofit_tracker.models import Team, Activity, Leaderboard, Workout
 from datetime import date, timedelta
 
 class Command(BaseCommand):
-    help = 'Populate the database with initial test data for OctoFit Tracker'
+    help = 'Populate the octofit_db database with test data for OctoFit Tracker'
 
     def handle(self, *args, **options):
         # Clear existing test data
