@@ -1,17 +1,65 @@
 from django.core.management.base import BaseCommand
-from octofit_tracker import models
+from django.contrib.auth.models import User
+from octofit_tracker.models import Team, Activity, Workout
+from datetime import date
 
 class Command(BaseCommand):
-    help = 'Populate the database with initial data for OctoFit Tracker'
+    help = 'Populate the database with initial test data for OctoFit Tracker'
 
     def handle(self, *args, **options):
-        # Example: create initial data for demonstration
-        # You should adjust this to match your actual models
-        if hasattr(models, 'UserProfile'):
-            if not models.UserProfile.objects.exists():
-                models.UserProfile.objects.create(user_id=1, bio='Demo user')
-                self.stdout.write(self.style.SUCCESS('Created demo UserProfile'))
-            else:
-                self.stdout.write(self.style.WARNING('UserProfile data already exists'))
+        # Create test user if not exists
+        user, created = User.objects.get_or_create(
+            username='testuser',
+            defaults={
+                'email': 'testuser@example.com',
+                'is_active': True
+            }
+        )
+        if created:
+            user.set_password('testpassword')
+            user.save()
+            self.stdout.write(self.style.SUCCESS('Created test user'))
         else:
-            self.stdout.write(self.style.WARNING('UserProfile model not found. Please define your models.'))
+            self.stdout.write(self.style.WARNING('Test user already exists'))
+
+        # Create test team
+        team, team_created = Team.objects.get_or_create(name='Test Team')
+        if team_created:
+            team.members.add(user)
+            self.stdout.write(self.style.SUCCESS('Created test team and added user'))
+        else:
+            self.stdout.write(self.style.WARNING('Test team already exists'))
+            if user not in team.members.all():
+                team.members.add(user)
+                self.stdout.write(self.style.SUCCESS('Added user to test team'))
+
+        # Create test activity
+        activity, activity_created = Activity.objects.get_or_create(
+            user=user,
+            team=team,
+            type='Running',
+            date=date.today(),
+            defaults={
+                'duration': 30,
+                'distance': 5.0,
+                'calories': 300
+            }
+        )
+        if activity_created:
+            self.stdout.write(self.style.SUCCESS('Created test activity'))
+        else:
+            self.stdout.write(self.style.WARNING('Test activity already exists'))
+
+        # Create test workout
+        workout, workout_created = Workout.objects.get_or_create(
+            user=user,
+            name='Morning Cardio',
+            defaults={
+                'description': '30 minutes of running',
+                'suggested_by': user
+            }
+        )
+        if workout_created:
+            self.stdout.write(self.style.SUCCESS('Created test workout'))
+        else:
+            self.stdout.write(self.style.WARNING('Test workout already exists'))
