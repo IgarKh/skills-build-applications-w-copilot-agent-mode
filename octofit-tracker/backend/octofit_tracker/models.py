@@ -10,7 +10,7 @@ class Team(models.Model):
         return self.name
 
 class Activity(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activities')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activities', null=True, blank=True)
     team = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True, blank=True, related_name='activities')
     type = models.CharField(max_length=50)
     duration = models.PositiveIntegerField(help_text='Duration in minutes')
@@ -20,7 +20,8 @@ class Activity(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.type} on {self.date}"
+        username = self.user.username if self.user else 'anonymous'
+        return f"{username} - {self.type} on {self.date}"
 
 class Leaderboard(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='leaderboard_entries')
