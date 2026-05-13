@@ -1,0 +1,223 @@
+:root {
+  --octo-bg: #f2f8f6;
+  --octo-surface: #ffffff;
+  --octo-border: #cfe0db;
+  --octo-text: #193237;
+  --octo-muted: #4a6569;
+  --octo-primary: #0f7a7a;
+  --octo-primary-soft: #d8f0ee;
+  --octo-accent: #ff9f43;
+  --octo-accent-deep: #ef7f1a;
+  --octo-link: #0862c4;
+}
+
+body {
+  background:
+    radial-gradient(circle at 10% -15%, #b9ece7 0%, transparent 40%),
+    radial-gradient(circle at 90% -10%, #ffe0b8 0%, transparent 35%),
+    var(--octo-bg);
+  color: var(--octo-text);
+  font-family: 'Avenir Next', 'Segoe UI', 'Trebuchet MS', sans-serif;
+}
+
+.app-shell {
+  color: var(--octo-text);
+}
+
+.app-top {
+  background: linear-gradient(135deg, #f3fffd 0%, #fff7ea 100%);
+}
+
+.app-hero {
+  background: var(--octo-surface);
+  border: 1px solid var(--octo-border);
+}
+
+.app-brand-wrap {
+  min-width: 0;
+}
+
+.app-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #dbf6f3 0%, #fff1dc 100%);
+  border: 1px solid var(--octo-border);
+  padding: 0.35rem;
+  box-shadow: 0 8px 20px rgba(19, 63, 70, 0.12);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #143e44;
+}
+
+a {
+  color: var(--octo-link);
+  text-decoration-color: rgba(8, 98, 196, 0.35);
+}
+
+a:hover {
+  color: #034d9b;
+  text-decoration-color: rgba(3, 77, 155, 0.6);
+}
+
+.app-hero .lead {
+  color: var(--octo-muted);
+  max-width: 44ch;
+}
+
+.app-nav {
+  background-color: rgba(18, 64, 71, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+}
+
+.app-nav .navbar-brand,
+.app-nav .nav-link {
+  color: #e6f5f4;
+}
+
+.app-nav .nav-link:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.app-nav .nav-link.active {
+  color: #16363e;
+  background-color: var(--octo-accent);
+}
+
+.app-nav .navbar-toggler {
+  border-color: rgba(230, 245, 244, 0.35);
+}
+
+.app-nav .navbar-toggler-icon {
+  filter: invert(1) brightness(2);
+}
+
+.octo-card {
+  border: 1px solid var(--octo-border);
+  border-radius: 14px;
+}
+
+.octo-card .card-header {
+  background: linear-gradient(100deg, var(--octo-primary-soft), #fff4df);
+  border-bottom: 1px solid var(--octo-border);
+}
+
+.octo-title {
+  color: #12324c;
+}
+
+.octo-subtitle {
+  color: var(--octo-muted);
+}
+
+.octo-table {
+  margin-bottom: 0;
+}
+
+.octo-table.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: #f3fbfa;
+}
+
+.octo-table.table-hover > tbody > tr:hover > * {
+  background-color: #e7f6f3;
+}
+
+.octo-table.table > :not(caption) > * > * {
+  border-bottom-color: #d8e8e4;
+}
+
+.octo-table thead.table-dark th {
+  background: linear-gradient(90deg, #1d5f66, #2d6f76);
+  color: #eef9f8;
+  border-bottom: 1px solid #407e84;
+}
+
+.octo-table thead th {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.octo-table tbody td {
+  vertical-align: middle;
+}
+
+.octo-value {
+  max-width: 260px;
+  overflow-wrap: anywhere;
+}
+
+.octo-meta {
+  color: var(--octo-muted);
+  font-size: 0.92rem;
+}
+
+.btn-primary {
+  background-color: var(--octo-primary);
+  border-color: var(--octo-primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #0d6868;
+  border-color: #0d6868;
+}
+
+.btn-outline-primary {
+  color: var(--octo-primary);
+  border-color: var(--octo-primary);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  color: #ffffff;
+  background-color: var(--octo-primary);
+  border-color: var(--octo-primary);
+}
+
+.btn-outline-dark {
+  color: #1a444b;
+  border-color: #1a444b;
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark:focus {
+  color: #ffffff;
+  background-color: #1a444b;
+  border-color: #1a444b;
+}
+
+.btn-outline-secondary {
+  color: #46696f;
+  border-color: #9fb8b4;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+  color: #1f4146;
+  background-color: #dcebe8;
+  border-color: #8fa9a5;
+}
+
+.octo-modal .modal-content {
+  border: 1px solid var(--octo-border);
+  border-radius: 14px;
+}
+
+.octo-modal .modal-header {
+  background: linear-gradient(100deg, #ecf7ff, #fff4e8);
+}
+
+.octo-modal .modal-title {
+  color: #11324a;
+}
